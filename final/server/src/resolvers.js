@@ -65,7 +65,7 @@ module.exports = {
     },
     login: async (_, { email }, { dataSources }) => {
       const user = await dataSources.userAPI.findOrCreateUser({ email });
-      if (user) return new Buffer(email).toString('base64');
+      if (user) return Buffer.from(email).toString('base64');
     },
   },
   Launch: {
@@ -75,16 +75,13 @@ module.exports = {
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify
     missionPatch: (mission, { size } = { size: 'LARGE' }) => {
-      return size === 'SMALL'
-        ? mission.missionPatchSmall
-        : mission.missionPatchLarge;
+      return size === 'SMALL' ? mission.missionPatchSmall : mission.missionPatchLarge;
     },
   },
   User: {
     trips: async (_, __, { dataSources }) => {
       // get ids of launches by user
       const launchIds = await dataSources.userAPI.getLaunchIdsByUser();
-
       if (!launchIds.length) return [];
 
       // look up those launches by their ids

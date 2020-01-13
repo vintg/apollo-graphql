@@ -36,7 +36,6 @@ class UserAPI extends DataSource {
     if (!userId) return;
 
     let results = [];
-
     // for each launch id, try to book the trip and add it to the results array
     // if successful
     for (const launchId of launchIds) {
