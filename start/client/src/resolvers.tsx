@@ -5,12 +5,6 @@ import * as LaunchTileTypes from './pages/__generated__/LaunchTile';
 import { Resolvers } from 'apollo-client'
 import { GET_CART_ITEMS } from './pages/cart';
 
-export const schema = gql`
-  extend type Launch {
-    isInCart: Boolean!
-  }
-`;
-
 export const typeDefs = gql`
   extend type Query {
     isLoggedIn: Boolean!
